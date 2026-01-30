@@ -1,0 +1,74 @@
+name: Test
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Set up Python
+      uses: actions/setup-python@v4
+      with:
+        # Use 3.13 (latest patch) or 3.12 if 3.13 isn't available
+        python-version: '3.13'
+
+    - name: System info (Windows)
+      if: runner.os == 'Windows'
+      shell: bash
+      run: |
+        echo "Disk space:"
+        df -h || echo "df not available"
+        echo "Memory info:"
+        free -h || wmic OS get TotalVisibleMemorySize,FreePhysicalMemory || echo "Memory info not available"
+
+    - name: Install build dependencies (Ubuntu)
+      if: runner.os == 'Linux'
+      run: |
+        sudo apt-get update
+        sudo apt-get install -y gcc g++ || true
+
+    - name: Install dependencies
+      timeout-minutes: 20
+      shell: bash
+      run: |
+        set -x  # Enable command tracing
+        echo "Upgrading pip, setuptools, wheel..."
+        pip install --upgrade pip setuptools wheel
+        
+        echo "Installing requirements.txt..."
+        # Capture full output for debugging
+        pip install -v --no-cache-dir -r requirements.txt 2>&1 | tee install.log || {
+          echo "=== INSTALLATION FAILED ==="
+          echo "Last 100 lines of install.log:"
+          tail -100 install.log || cat install.log || true
+          echo "=== Checking pip error ==="
+          pip --version || true
+          echo "=== Checking Python ==="
+          python --version || true
+          exit 1
+        }
+        
+        echo "Installation complete!"
+        echo "Verifying key packages..."
+        python -c "import auto_lca; print('auto-lca package imported successfully')" || echo "Import check skipped"
+
+    - name: Run tests
+      timeout-minutes: 15
+      shell: bash
+      env:
+        PYTHONPATH: ${{ github.workspace }}
+      run: |
+        set -e
+        echo "Running tests..."
+        echo "Python version: $(python --version)"
+        echo "Pytest version: $(python -m pytest --version || echo 'pytest not found')"
+        # Use pytest directly for better Windows compatibility
+        python -m pytest -v --tb=short --maxfail=1

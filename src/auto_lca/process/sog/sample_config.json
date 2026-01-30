@@ -1,0 +1,38 @@
+{
+  "defaults": {
+    "add_references": false,
+    "add_justifications": false,
+    "llm_role": "reasoner_text",
+    "singular_occurrence": false,
+    "by_scenario": true,
+    "aspect": "Methods_Results"
+  },
+  "aspects": [
+    {
+      "name": "Methods_Results",
+      "description": "Methods_Results"
+    }
+  ],
+  "concepts": [
+    {
+      "name": "Lifecycle Assessment Characteristics",
+      "description": "Core LCA framework characteristics: the functional unit (quantitative reference for comparison, e.g., kg milk or kg protein), system boundary (e.g. 'cradle-to-gate', 'cradle-to-farm gate'), methodology standards (ISO 14040/14044, PAS 2050), emission calculation models, background databases used (e.g., Ecoinvent, IPCC), LCA software tools, and any stated study limitations",
+      "aspect": "Methods_Results",
+      "by_scenario": false,
+      "structure": {
+        "Functional Unit": "str",
+        "System Boundary": "str",
+        "Life cycle impact assessment": "str"
+      }
+    },
+    {
+      "name": "Results",
+      "description": "Environmental impact assessment results beyond climate change: acidification potential (kg SO2-eq or mol H+-eq per functional unit, from NH3, NOx, SO2 emissions), eutrophication potential (kg PO4-eq or kg N-eq, from nutrient runoff/leaching), freshwater depletion (m³ or liters of water consumed), carbon footprint/global warming potential (kg CO2e), cumulative energy demand/CED (MJ primary energy), land use or land occupation (m²·year), fossil resource depletion (kg oil-eq), metal depletion (kg Fe-eq), allocation method used for this assessment, and methodological notes (characterization method like CML, ReCiPe, IMPACT 2002+).",
+      "aspect": "Methods_Results",
+      "by_scenario": true,
+      "structure": {
+        "Carbon footprint (kg CO2e)": "str | None"
+      }
+    }
+  ]
+}

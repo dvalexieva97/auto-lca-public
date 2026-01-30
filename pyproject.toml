@@ -1,0 +1,25 @@
+[project]
+name = "auto-lca"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "dvalexieva97",email = "dvalexieva@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.13"
+
+[tool.poetry]
+packages = [{ include = "auto_lca", from = "src" }]
+
+[tool.poetry.dependencies]
+make = "^0.1.6.post2"
+[tool.setuptools]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
