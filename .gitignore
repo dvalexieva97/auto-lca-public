@@ -1,0 +1,19 @@
+# .gitignore
+# Python
+*.py[cod]
+__pycache__/
+
+# Virtual environments
+.venv/
+.venv/*
+/venv/
+venv/
+auto-lca-env/*
+
+# Poetry
+poetry.lock
+.cache/
+
+.DS_Store
+src/auto_lca/app/output/
+src/auto_lca/output/

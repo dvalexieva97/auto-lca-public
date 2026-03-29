@@ -1,0 +1,29 @@
+#!/bin/bash
+# git-scripts/pre-push-hook
+# Copy this to .git/hooks/pre-push to prevent pushing filtered branches to private remote
+# 
+# Usage:
+#   cp git-scripts/pre-push-hook .git/hooks/pre-push
+#   chmod +x .git/hooks/pre-push
+
+protected_branches=('public-filter-temp' 'public-filtered-*')
+private_remotes=('origin')  # Your private remote name
+
+while read local_ref local_sha remote_ref remote_sha
+do
+    branch_name=$(git rev-parse --abbrev-ref HEAD)
+    
+    for protected in "${protected_branches[@]}"; do
+        if [[ "$branch_name" == $protected ]]; then
+            for remote in "${private_remotes[@]}"; do
+                if [[ "$remote_ref" == "refs/heads/"* ]] && [[ "$remote_ref" == "refs/heads/$remote/"* ]]; then
+                    echo "ERROR: Cannot push filtered branch '$branch_name' to private remote '$remote'"
+                    echo "This prevents accidentally pushing filtered history to your private repo."
+                    exit 1
+                fi
+            done
+        fi
+    done
+done
+
+exit 0

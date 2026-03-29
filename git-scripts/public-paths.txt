@@ -1,0 +1,50 @@
+# Files/patterns to include in public repo
+# One pattern per line
+# Use 'glob:' prefix for glob patterns (recursive matching with **)
+# Use 'literal:' prefix for exact paths (or no prefix, literal is default)
+# All paths are relative to the repository root (auto-lca/)
+
+# Source code
+glob:src/auto_lca/models/**
+glob:src/auto_lca/process/nlp/**
+glob:src/auto_lca/process/preprocess/**
+glob:src/auto_lca/process/sog/**
+glob:src/auto_lca/statistics/**
+glob:src/auto_lca/process/__init__.py
+
+# Shared
+glob:src/auto_lca/shared/**
+
+# Scripts
+src/auto_lca/scripts/__init__.py
+src/auto_lca/scripts/sog_runner_inline.py
+src/auto_lca/scripts/sog_runner.py
+setup-windows.ps1
+
+# Documentation
+README.md
+WINDOWS_QUICK_START.md
+QUICK_START.md
+
+# Data 
+glob:src/auto_lca/data/input-papers/.gitkeep
+src/auto_lca/data/output/results/.gitkeep
+
+# Tests
+glob:tests/**
+
+
+# Build files
+Makefile
+setup.py
+
+# Git files
+.gitignore
+glob:.github/**
+glob:git-scripts/**
+
+# Requirements
+requirements.txt
+pyproject.toml
+poetry.lock
+

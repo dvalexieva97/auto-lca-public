@@ -1,0 +1,350 @@
+{
+  "defaults": {
+    "add_references": false,
+    "add_justifications": false,
+    "llm_role": "reasoner_text",
+    "singular_occurrence": false, 
+    "by_scenario":true,
+    "aspect":"Methods_Results"
+
+  },
+  "aspects":[
+    {
+            "name": "Methods", 
+            "description": "Methods of the study"
+    },
+    {
+            "name": "Results", 
+            "description": "Results of the study"
+    },
+    {
+      "name": "Methods_Results", 
+      "description": "Joined Methods and Results of the study"
+    }
+  ],
+  "concepts": [
+    {
+      "name": "Lifecycle Assessment Characteristics",
+      "description": "Core LCA framework characteristics: the functional unit (quantitative reference for comparison, e.g., kg milk or kg protein), system boundary (e.g. 'cradle-to-gate', 'cradle-to-farm gate'), methodology standards (ISO 14040/14044, PAS 2050), emission calculation models, background databases used (e.g., Ecoinvent, IPCC), LCA software tools, and any stated study limitations",
+      "aspect": "Methods", 
+      "by_scenario":false,
+      "structure": {
+        "Functional Unit": "str",
+        "System Boundary": "str",
+        "Methodology": "str | None",
+        "Emissions model": "str | None",
+        "Database (background)": "str | None",
+        "Software": "str | None",
+        "Limitations": "str | None"
+      }
+    },
+    {
+      "name": "Study details",
+      "description": "Geographic and temporal context of the study: country and specific farm location(s), coordinates if available, climate classification (e.g., temperate, subtropical, Mediterranean), publication year, data collection period/years, and description of activity data sources (farm surveys, national statistics, experimental data, etc.)",
+      "aspect": "Methods",
+      "by_scenario":false,
+      "structure": {
+        "Country": "str | None",
+        "Specific location": "str | None",
+        "Latitude": "float | None",
+        "Longitude": "float | None",
+        "Climate": "str | None",
+        "Year (publication)": "int | None",
+        "Year (data)": "List[int]",
+        "Activity data": "str | None"
+      }
+    },
+    {
+      "name": "Allocation",
+      "description": "Allocation approach used in the study. Allocation is defined as the way to split the input and/or output flows of a process to the product system under study. Common allocation approaches are: physical allocation, economic allocation, and no allocation. Extract the specific allocation method and percentage split between products (e.g., 85% milk, 15% meat)",
+      "aspect": "Methods_Results",
+      "by_scenario":false,
+      "structure": {
+        "Type of allocation": "str | None",
+        "Allocation %": "str | None"
+      }
+    },
+    {
+      "name": "CO2- Equivalence",
+      "description": "Global Warming Potential (GWP) factors used to convert greenhouse gases to CO2-equivalents. Extract the specific GWP values for methane (CH4) and nitrous oxide (N2O), which depend on the time horizon used (e.g., GWP100: CH4=25, N2O=298 for IPCC AR4; or CH4=28, N2O=265 for IPCC AR5). Note any other GHG conversion factors mentioned",
+      "aspect": "Methods_Results",
+      "by_scenario":false,
+      "structure": {
+        "CH4": "float | None",
+        "N2O": "float | None",
+        "Others": "str | None"
+      }
+    },
+    {
+      "name": "Environmental Aspects",
+      "description": "Detailed environmental and climatic conditions at the study site that affect farm productivity and emissions: climate classification, annual rainfall (mm), mean temperature ranges (°C), soil characteristics (texture, pH, organic matter), elevation (m above sea level), land use history, vegetation or ground cover types, solar radiation levels (MJ/m²), wind patterns, and potential evapotranspiration rates (mm/year)",
+      "aspect": "Methods",
+      "by_scenario":false,
+      "structure": {
+        "CLIMATE": "str | None",
+        "RAINFALL": "str | None",
+        "TEMPERATURE": "str | None",
+        "SOIL TYPE": "str | None",
+        "ELEVATION": "str | None",
+        "LAND USE": "str | None",
+        "VEGETATION/ SOIL COVER": "str | None",
+        "SOLAR RADIATION": "str | None",
+        "WIND": "str | None",
+        "POTENTIAL EVAPOTRANSPIRATION": "str | None"
+      }
+    },
+    {
+      "name": "Characterization",
+      "description": "Overall system characteristics: type of dairy production system (intensive, extensive, organic, conventional, pasture-based, confined, mixed), temporal scope of the LCA assessment (number of years or production cycles analyzed), and any additional outputs or co-products from the system (e.g., crops grown, biogas production, ecosystem services)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Production system": "str | None",
+        "Duration of the LCA [year]": "float | None",
+        "Other outputs and information": "str | None"
+      }
+    },
+    {
+      "name": "Animals",
+      "description": "General herd characteristics: cattle breed or genetic makeup (e.g., Holstein, Jersey, crossbreeds) and total herd size (number of all animals including cows, heifers, calves, and bulls)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Breed": "str | None",
+        "Herd size": "int | None"
+      }
+    },
+    {
+      "name": "Cattle breeding (milking cows)",
+      "description": "Characteristics of the lactating dairy cow population: number of milking/lactating cows in the herd and their average live body weight in kilograms",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Number": "int | None",
+        "Mean body weight [kg]": "float | None"
+      }
+    },
+    {
+      "name": "Cattle breeding (replacement heifers)",
+      "description": "Characteristics of young female cattle being raised to replace culled cows: number of replacement heifers, their average body weight (kg), and the replacement rate (percentage or fraction of the milking herd replaced annually, e.g., 0.30 or 30% means each cow is replaced on average every 3.3 years)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Number": "int | None",
+        "Mean body weight [kg]": "float | None",
+        "Replacement rate": "float | None"
+      }
+    },
+    {
+      "name": "Dry cows",
+      "description": "Characteristics of non-lactating pregnant cows in the dry period (typically 6-8 weeks before calving when milking is stopped): number of dry cows and their average body weight (kg)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Number": "int | None",
+        "Mean body weight [kg]": "float | None"
+      }
+    },
+    {
+      "name": "Other animals",
+      "description": "Additional animal categories and outputs: number of other animals not categorized above (young stock, bulls), number of cows culled/sold annually, and details about male calves and surplus female calves not kept as replacements (their number and weight at sale/removal from system)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Number": "int | None",
+        "Culled cows": "int | None",
+        "Mean male and surplus female calves weight and/or number": "str | None"
+      }
+    },
+    {
+      "name": "Farm output",
+      "description": "Primary products from the farming system: total annual milk production or quantity sold (kg or liters), milk yield per cow per year or per lactation (kg/cow/year), milk productivity per hectare (kg/ha), milk protein percentage (%), milk fat percentage (%), and meat or live weight output from culled cows and calves sold (kg)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Milk production/sold": "str | None",
+        "Milk yield": "str | None",
+        "Milk, per ha": "str | None",
+        "Protein content": "str | None",
+        "Fat content": "str | None",
+        "Meat or liveweight sold and/or produced": "str | None"
+      }
+    },
+    {
+      "name": "Breeding",
+      "description": "Reproductive performance and herd management metrics: stocking rate (animals per hectare), calving rate (percentage of cows that calve or calves surviving to weaning), mortality rate (% of animals dying annually), age or weight at first breeding/insemination, calving interval (months between successive calvings, target ~12-13 months), age at first calving (months, typically 24-28), and lactation information (length, number, production curve details)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Stocking rate": "str | None",
+        "Calving rate (calves that survived to weaning)": "str | None",
+        "Mortality rate": "str | None",
+        "First breeding": "str | None",
+        "Calving interval": "str | None",
+        "Age at first calving": "float | None",
+        "Lactation info": "str | None"
+      }
+    },
+    {
+      "name": "Pasture",
+      "description": "Grazing land characteristics and management: pasture management practices (rotational grazing, continuous grazing, strip grazing) and intake estimates (kg DM/day), plant species composition (grass types, legumes, forbs), forage/pasture productivity (kg DM/ha/year or per growing season), forage utilization rate (percentage of available forage actually consumed by animals), seed types and application rates for pasture establishment, and duration of grazing season (months or dates)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Pasture management and/or intake": "str | None",
+        "Species": "str | None",
+        "Forage/pasture yield": "str | None",
+        "Forage utilization rate": "str | None",
+        "Seeds": "str | None",
+        "Grazing season and/or period": "str | None"
+      }
+    },
+    {
+      "name": "Purchased feed",
+      "description": "Externally sourced feed inputs bought from off-farm: types of purchased feed products (concentrates, grains, protein supplements, minerals, commercial feed mixes) and their quantities (kg or tonnes per year or per cow). This represents feed not produced on the farm itself",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Purchased products": "str | None"
+      }
+    },
+    {
+      "name": "Feed information",
+      "description": "Nutritional characteristics of feeds used in the system: concentrate feed types and amounts (kg/day or kg/cow/year), crude protein content (% or g/kg DM), neutral detergent fiber/NDF (% DM, indicator of fiber content), gross energy (MJ/kg DM), digestible energy (MJ/kg DM or %), feed conversion efficiency, detailed chemical composition analysis, dry matter intake/DMI (kg/day per animal), feed production yields (tonnes/ha), farm self-sufficiency level (% of feed produced on-farm vs purchased), and other relevant feeding information",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Concentrated feed": "str | None",
+        "Crude protein": "str | None",
+        "Neutral detergent fiber": "str | None",
+        "Gross energy": "str | None",
+        "Digestibility energy": "str | None",
+        "Feed energy conversion ratio": "str | None",
+        "Chemical composition": "str | None",
+        "DMI": "str | None",
+        "Yield": "str | None",
+        "Self sufficiency": "str | None",
+        "Other info": "str | None"
+      }
+    },
+    {
+      "name": "On-farm feeds intake",
+      "description": "Quantities and details of animal feed produced on-farm, including hay, maize, silage, pasture, and total feed intake measurements",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Hay": "str | None",
+        "Maize": "str | None",
+        "Silage": "str | None",
+        "Grass/pasture": "str | None",
+        "Others": "str | None",
+        "Total intake": "str | None"
+      }
+    },
+    {
+      "name": "Farm management",
+      "description": "Overall farm management approach and inputs: general farming practices affecting productivity (housing systems, milking frequency, breeding strategies, health management), chemical products used (pesticides, herbicides, veterinary medicines, cleaning agents) with quantities if specified, and additional management notes (organic certification, sustainability practices, technology adoption)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Farm practices and productivity": "str | None",
+        "Chemical products": "str | None",
+        "Notes on management": "str | None"
+      }
+    },
+    {
+      "name": "Manure",
+      "description": "Animal waste handling and utilization: manure management system type (solid storage, liquid slurry, lagoon, daily spread, composting, anaerobic digestion), total manure quantity produced (tonnes/year or kg/animal/day), and land application details including whether manure is applied to fields and the amounts applied (tonnes/ha or kg N/ha)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Manure management": "str | None",
+        "Quantity": "str | None",
+        "Applied to land (yes/no) and amount": "str | None"
+      }
+    },
+    {
+      "name": "Fertilizers",
+      "description": "Synthetic and organic fertilizer applications to crop and pasture land: types of fertilizers used (nitrogen, phosphorus, potassium, lime, other minerals), application rates (kg/ha/year or kg N/ha), timing and frequency of applications, and total farm-level fertilizer consumption. Distinguish between synthetic/mineral fertilizers and organic amendments like manure",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Fertilizer use": "str | None"
+      }
+    },
+    {
+      "name": "Other requirements",
+      "description": "Additional material inputs for farm operations: bedding materials for animal housing (straw, sawdust, sand, recycled manure solids) with quantities used (kg/cow/day or tonnes/year), and other miscellaneous inputs not captured elsewhere (e.g., replacement parts, infrastructure materials)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Bedding materials": "str | None",
+        "Others": "str | None"
+      }
+    },
+    {
+      "name": "Farm land",
+      "description": "Land resources and spatial allocation: total farm area (hectares), pasture/grazing land area (ha), off-farm land used for feed production (ha, e.g., rented cropland), breakdown of land use types (cropland, permanent pasture, forests, buildings), area per animal for grazing (ha/AU or m²/cow, paddock sizes), and other land-related details (irrigated area, degraded land, conservation areas)",
+      "aspect": "Methods_Results",
+      "structure": {
+        "Farm area": "str | None",
+        "Pasture and/or grazing area": "str | None",
+        "Off-farm area": "str | None",
+        "Land use": "str | None",
+        "Area per animal (paddocks)": "str | None",
+        "Others": "str | None"
+      }
+    },
+    {
+      "name": "Energy and other resources",
+      "description": "Non-biological resource consumption on the farm: electricity usage (kWh/year or kWh/kg milk) and heat/thermal energy consumption, fuel consumption by type (diesel, gasoline, natural gas, propane) in liters or MJ per year or per functional unit, and water consumption (m³/year or liters/kg milk) for drinking, cleaning, irrigation, and other farm operations",
+      "aspect": "Results",
+      "structure": {
+        "Electricity and heat": "str | None",
+        "Fuels": "str | None",
+        "Water consumption": "str | None"
+      }
+    },
+    {
+      "name": "Soil sequestration",
+      "description": "Carbon storage in agricultural soils: soil organic carbon (SOC) sequestration rate (kg C/ha/year or tonnes CO2e/ha/year), the measurement or modeling approach used to estimate sequestration (soil sampling, models like RothC or CENTURY, literature values, emission factors), and any uncertainty estimates or important caveats about the sequestration estimates (time period, land management changes, equilibrium assumptions)",
+      "aspect": "Results",
+      "structure": {
+        "Soil organic carbon sequestration (kg C/ha/year)": "str | None",
+        "Measurement basis / method": "str | None",
+        "Uncertainty / notes": "str | None"
+      }
+    },
+    {
+      "name": "Soil emissions",
+      "description": "Greenhouse gas emissions originating from agricultural soils: total soil-related emissions in CO2-equivalents (kg CO2e per functional unit), nitrous oxide emissions from soils (kg N2O, from fertilizer application, manure application, crop residues, and indirect sources), methane emissions from soils if relevant (kg CH4, rare but possible in flooded/wetland conditions), and notes on measurement methods or emission factors used (IPCC Tier 1/2/3, country-specific factors, field measurements)",
+      "aspect": "Results",
+      "structure": {
+        "Total soil emissions (kg CO2e)": "str | None",
+        "Soil N2O (kg N2O)": "str | None",
+        "Soil CH4 (kg CH4)": "str | None",
+        "Notes / measurement basis": "str | None"
+      }
+    },
+    {
+      "name": "Emissions (detailed)",
+      "description": "Detailed emission sources including enteric, manure and energy CO2.",
+      "aspect": "Results",
+      "structure": {
+        "Enteric fermentation (kg CO2e)": "str | None",
+        "Manure CH4 (kg CH4)": "str | None",
+        "Other CH4 related emissions (kg CH4)": "str | None",
+        "Manure N2O (kg N2O)": "str | None",
+        "N2O crop residues (kg N2O)": "str | None",
+        "Other N2O related emissions (kg N2O)": "str | None",
+        "Energy CO2 (kg CO2)": "str | None",
+        "Other CO2 related emissions (kg CO2)": "str | None",
+        "Net farm emissions (kg CO2e)": "str | None",
+        "Total emissions (kg CO2e)": "str | None"
+      }
+    },
+    {
+      "name": "Midpoint impact categories",
+      "description": "Environmental impact assessment results beyond climate change: acidification potential (kg SO2-eq or mol H+-eq per functional unit, from NH3, NOx, SO2 emissions), eutrophication potential (kg PO4-eq or kg N-eq, from nutrient runoff/leaching), freshwater depletion (m³ or liters of water consumed), carbon footprint/global warming potential (kg CO2e), cumulative energy demand/CED (MJ primary energy), land use or land occupation (m²·year), fossil resource depletion (kg oil-eq), metal depletion (kg Fe-eq), allocation method used for this assessment, and methodological notes (characterization method like CML, ReCiPe, IMPACT 2002+). In case the functional unit is FPCM, then the 'GWP (kg CO2-eq/functional unit)' and 'Final GWP (kg CO2 e/kg FPCM)' are the same.",
+      "aspect": "Results",
+      "structure": {
+        "Acidification potential": "str | None",
+        "Eutrophication potential": "str | None",
+        "Freshwater depletion": "str | None",
+        "Carbon footprint (kg CO2e)": "str | None",
+        "GWP (kg CO2-eq/functional unit)": "str | None",
+        "Final GWP (kg CO2 e/kg FPCM)": "str | None",
+        "Cumulative energy demand (MJ)": "str | None",
+        "Land Use": "str | None",
+        "FOSSIL DEPLETION":"str | None",
+        "METAL DEPLETION":"str | None",
+        "Type of allocation": "str | None",
+        "Notes / method (GWP factors etc.)": "str | None"
+      }
+    }
+  ]
+}
