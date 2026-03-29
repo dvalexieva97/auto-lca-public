@@ -1,6 +1,6 @@
 # AUTO-LCA
 
-**AUTO-LCA** is an automated Life Cycle Assessment (LCA) database generation tool that crawls academic LCA research papers and extracts structured data from them using machine learning. The tool uses [Semantic Scholar](https://www.semanticscholar.org/) to search for papers and leverages Mistral AI's structured output generation to extract relevant information from PDF documents.
+**AUTO-LCA** is an automated Life Cycle Assessment (LCA) database generation tool that crawls academic LCA research papers and extracts structured data from them using machine learning. The tool leverages Mistral AI's structured output generation to extract relevant information from PDF documents.
 
 ## What It Does
 
