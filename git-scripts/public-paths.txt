@@ -1,0 +1,51 @@
+# Files/patterns to include in public repo
+# One pattern per line
+# Use 'glob:' prefix for glob patterns (recursive matching with **)
+# Use 'literal:' prefix for exact paths (or no prefix, literal is default)
+# All paths are relative to the repository root (auto-lca/)
+
+# Source code
+src/auto_lca/__init__.py
+src/auto_lca/__main__.py
+glob:src/auto_lca/models/**
+glob:src/auto_lca/process/nlp/**
+glob:src/auto_lca/process/preprocess/**
+glob:src/auto_lca/process/sog/**
+glob:src/auto_lca/statistics/**
+glob:src/auto_lca/process/__init__.py
+
+# Shared (bigquery.py and queries/ are legacy cloud code, not public)
+src/auto_lca/shared/__init__.py
+src/auto_lca/shared/constants.py
+src/auto_lca/shared/error.py
+src/auto_lca/shared/file_manager.py
+src/auto_lca/shared/llm_cost.py
+src/auto_lca/shared/log.py
+src/auto_lca/shared/model_preflight.py
+src/auto_lca/shared/schema_helper.py
+src/auto_lca/shared/util.py
+
+# Scripts
+src/auto_lca/scripts/__init__.py
+src/auto_lca/scripts/agent_sog_runner.py
+
+# Documentation
+README.md
+
+# Data 
+glob:src/auto_lca/data/input-papers/.gitkeep
+src/auto_lca/data/output/results/.gitkeep
+
+# Tests (code only, no caches)
+glob:tests/**.py
+
+
+
+# Git files
+.gitignore
+glob:.github/**
+glob:git-scripts/**
+
+# Requirements
+pyproject.toml
+

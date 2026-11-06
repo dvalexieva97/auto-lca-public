@@ -1,0 +1,65 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "auto-lca"
+version = "0.1.0"
+description = "Automatic data extraction from life cycle assessment (LCA) studies"
+readme = "README.md"
+authors = [{ name = "dvalexieva97", email = "dvalexieva@gmail.com" }]
+requires-python = ">=3.11"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Science/Research",
+    "Topic :: Scientific/Engineering",
+]
+# Core install = PDF extraction + comparison against ground truth.
+# sentence-transformers (and with it PyTorch) is needed for section detection
+# and field cosine scoring.
+dependencies = [
+    # <1.106: 1.106.0 async tool calls import `mcp` without depending on it.
+    "litellm>=1.101,<1.106",
+    "pymupdf>=1.25",
+    "pandas>=2.2",
+    "numpy>=1.26",
+    "openpyxl>=3.1",
+    "tiktoken>=0.9",
+    "nltk>=3.9",
+    "sentence-transformers>=3.0",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "google-cloud-storage>=3.0",
+]
+
+[project.optional-dependencies]
+# BERTScore sheet in `auto-lca compare` (skipped with a note when missing).
+eval = ["bert-score>=0.3.13"]
+# auto_lca.process.nlp.tables (Tabula needs a Java runtime).
+tables = ["docling>=2.0", "tabula-py>=2.9"]
+all = ["auto-lca[eval,tables]"]
+dev = ["pytest>=8", "build>=1.2"]
+
+[project.scripts]
+auto-lca = "auto_lca.scripts.agent_sog_runner:main"
+
+[project.urls]
+Repository = "https://github.com/dvalexieva97/auto-lca-public"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+include = ["auto_lca*"]
+exclude = [
+    "auto_lca.experiment*",
+    "auto_lca.data*",
+    "auto_lca.app*",
+    "auto_lca.sog*",
+    "auto_lca.config*",
+]
+
+[tool.setuptools.package-data]
+"auto_lca.process.sog" = ["sample_config*.json", "sample_config*.csv", "sample_config*.xlsx"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

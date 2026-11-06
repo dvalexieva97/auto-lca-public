@@ -1,0 +1,10 @@
+field_set,description,by_production_system,field,data_type
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Functional Unit,str
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,System Boundary,str
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Methodology,str | None
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Emissions model,str | None
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Database (background),str | None
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Software,str | None
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Assumptions,str | None
+Lifecycle Assessment Characteristics,"Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",False,Limitations,str | None
+Results,Per-production-system environmental impact results (e.g. carbon footprint in kg CO2e).,True,Carbon footprint (kg CO2e),float | None

@@ -1,0 +1,10 @@
+field_set,description,by_production_system,field,data_type
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Functional Unit,str
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,System Boundary,str
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Methodology,str | None
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Emissions model,str | None
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Database (background),str | None
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Software,str | None
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Assumptions,str | None
+Lifecycle Assessment Characteristics,"Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",False,Limitations,str | None
+Results,Per-production-system environmental impact results (e.g. carbon footprint / GWP in kg CO2e per functional unit).,True,Carbon footprint (kg CO2e),str | None

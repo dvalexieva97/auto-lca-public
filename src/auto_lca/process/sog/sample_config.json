@@ -1,0 +1,34 @@
+{
+  "defaults": {
+    "extract_production_systems": true,
+    "extract_non_primary_production_systems": false,
+    "by_production_system": true,
+    "strip_bibliography": true
+  },
+  "_model_notes": "Models default from your Mistral plan (model_profiles.json: FREE→Ministral+Large-4, else Small+Large-2512). Optional overrides: defaults.model, defaults.production_system_model, defaults.scenario_mapper_model — if set, they are checked against your plan and rejected with the plan defaults if unusable.",
+  "field_sets": [
+    {
+      "name": "Lifecycle Assessment Characteristics",
+      "description": "Study-wide LCA setup: functional unit, system boundary, methodology, emissions model, background database(s), software, modelling assumptions, and stated limitations.",
+      "by_production_system": false,
+      "fields": {
+        "Functional Unit": "str",
+        "System Boundary": "str",
+        "Methodology": "str | None",
+        "Emissions model": "str | None",
+        "Database (background)": "str | None",
+        "Software": "str | None",
+        "Assumptions": "str | None",
+        "Limitations": "str | None"
+      }
+    },
+    {
+      "name": "Results",
+      "description": "Per-production-system environmental impact results (e.g. carbon footprint / GWP in kg CO2e per functional unit).",
+      "by_production_system": true,
+      "fields": {
+        "Carbon footprint (kg CO2e)": "str | None"
+      }
+    }
+  ]
+}

@@ -1,0 +1,12 @@
+{
+  "paid": {
+    "model": "mistral-small-2603",
+    "production_system_model": "mistral-large-2512",
+    "scenario_mapper_model": "mistral-small-2603"
+  },
+  "free": {
+    "model": "ministral-14b-2512",
+    "production_system_model": "mistral-large-4",
+    "scenario_mapper_model": "ministral-14b-2512"
+  }
+}
