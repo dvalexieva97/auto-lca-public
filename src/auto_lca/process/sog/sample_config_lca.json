@@ -1,0 +1,49 @@
+{
+  "defaults": {
+    "domain": "lca",
+    "extract_production_systems": true,
+    "extract_non_primary_production_systems": false,
+    "by_production_system": true,
+    "strip_bibliography": true,
+    "extract_sections": false,
+    "include_pdf_tables": false,
+    "allow_additional_fields": false
+  },
+  "_notes": "LCA sample config. Models come from your Mistral plan (model_profiles.json) unless you set defaults.model / production_system_model. Nested amount/unit impact objects are JSON-only — the matching XLSX sample uses the same field names with str | None (value as stated, number and unit together).",
+  "field_sets": [
+    {
+      "name": "Lifecycle Assessment Characteristics",
+      "description": "Core LCA setup: functional unit, system boundary, methodology, emissions model, background database, software, assumptions, and limitations.",
+      "by_production_system": false,
+      "fields": {
+        "Functional Unit": "str",
+        "System Boundary": "str",
+        "Methodology": "str | None",
+        "Emissions model": "str | None",
+        "Database (background)": "str | None",
+        "Software": "str | None",
+        "Assumptions": "str | None",
+        "Limitations": "str | None"
+      }
+    },
+    {
+      "name": "Results",
+      "description": "Per-production-system environmental impact results with amount and unit.",
+      "by_production_system": true,
+      "fields": {
+        "Carbon footprint": {
+          "amount": "float | None",
+          "unit": "str | None"
+        },
+        "Acidification Impact": {
+          "amount": "float | None",
+          "unit": "str | None"
+        },
+        "Eutrophication Impact": {
+          "amount": "float | None",
+          "unit": "str | None"
+        }
+      }
+    }
+  ]
+}

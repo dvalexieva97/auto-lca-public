@@ -1,0 +1,40 @@
+{
+  "defaults": {
+    "domain": "generic",
+    "extract_production_systems": false,
+    "extract_non_primary_production_systems": false,
+    "by_production_system": false,
+    "strip_bibliography": true,
+    "extract_sections": false,
+    "include_pdf_tables": true,
+    "allow_additional_fields": true
+  },
+  "_notes": "Generic JSON sample: scenarios off; Models is a nested list-of-objects (JSON only). The matching XLSX sample instead turns scenarios on and uses flat Name/Score fields with by_production_system=true.",
+  "field_sets": [
+    {
+      "name": "Study Design",
+      "description": "High-level study setup: research objective, data or benchmarks used, and the main methods or model family.",
+      "by_production_system": false,
+      "fields": {
+        "Objective": "str",
+        "Dataset or benchmark": "str | None",
+        "Methods overview": "str | None"
+      }
+    },
+    {
+      "name": "Model or Experiment",
+      "description": "All reported model or experiment results in the paper (variants, ablations, benchmarks) as a list of objects.",
+      "by_production_system": false,
+      "fields": {
+        "Models": [
+          {
+            "Name": "str | None",
+            "Key metric": "str | None",
+            "Score": "float | None",
+            "Description": "str | None"
+          }
+        ]
+      }
+    }
+  ]
+}

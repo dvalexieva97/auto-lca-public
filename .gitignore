@@ -1,0 +1,77 @@
+# .gitignore
+# Python
+*.py[cod]
+__pycache__/
+
+# Virtual environments
+.venv/
+.venv/*
+/venv/
+venv/
+auto-lca-env/*
+
+# Poetry
+poetry.lock
+.cache/
+
+.DS_Store
+.env
+.env.*
+*.pem
+*-service-account*.json
+ist-lca-*.json
+
+# Local / scratch output trees (not the ___cross_domain finals)
+src/auto_lca/app/output/
+src/auto_lca/output/
+src/auto_lca/data/output/
+src/auto_lca/data/input/
+src/auto_lca/data/input-papers/
+outputs/
+outputs-*/
+input/
+input-papers/
+output/
+
+# Cross-domain: keep configs/scripts/docs tracked; ignore copyrighted PDFs
+# and regenerable large binary outputs. Audit JSON under stats/audit/ can be
+# force-added when needed (git add -f).
+___cross_domain/**/*.pdf
+___cross_domain/**/*.xlsx
+___cross_domain/**/*.xlsx#
+___cross_domain/**/*.xls
+___cross_domain/**/*.docx
+___cross_domain/**/*.doc
+___cross_domain/**/*.zip
+# paper_tables: track the code (build.py, pkg/, scripts/, figures/*.py), not the built packs
+___cross_domain/**/paper_tables/*
+!___cross_domain/paper_tables/build.py
+!___cross_domain/paper_tables/pkg/
+!___cross_domain/paper_tables/scripts/
+!___cross_domain/paper_tables/figures/
+___cross_domain/paper_tables/pkg/*.json
+___cross_domain/paper_tables/figures/*
+!___cross_domain/paper_tables/figures/*.py
+# Final data pack (inputs, tables, SI): data, not code
+___cross_domain/final_data_pack/
+# Supplementary materials (publisher SI / ESM dumps; copyrighted)
+___cross_domain/**/supplementary_information/
+___cross_domain/**/input-papers-supplementary/
+___cross_domain/**/supplementary_for_rerun/
+___cross_domain/**/supplementary*/
+___cross_domain/**/input-papers/
+___cross_domain/**/input-papers-original/
+___cross_domain/**/input-papers-by-pid/
+___cross_domain/**/outputs-*/
+___cross_domain/**/*.log
+___cross_domain/**/.DS_Store
+___cross_domain/**/__pycache__/
+# Archived experiments / old runs
+z_old_results_to_del/
+
+# Python packaging build output
+build/
+dist/
+*.egg-info/
+stratified_sample_reviewed-manual.csv
+___cross_domain/**/*.json
